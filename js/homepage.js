@@ -124,16 +124,10 @@ gsap.registerEase("contentReveal",
   const topEl = document.getElementById('overlay-top');
   const bottomEl = document.getElementById('overlay-bottom');
 
-  /* Inner element is the foliage SVG built by js/foliage.js.
-     Three separate things own transforms here and must not
-     collide:
-       .hero__overlay-img  -> intro reveal + mouse (this file)
-       .foliage-art (svg)  -> inner mouse parallax (this file)
-       .foliage-tier (g)   -> scroll parallax (foliage.js) */
-  const leftInner = leftEl ? leftEl.querySelector('.foliage-art') : null;
-  const rightInner = rightEl ? rightEl.querySelector('.foliage-art') : null;
-  const topInner = topEl ? topEl.querySelector('.foliage-art') : null;
-  const bottomInner = bottomEl ? bottomEl.querySelector('.foliage-art') : null;
+  const leftInner = leftEl ? leftEl.querySelector('img') : null;
+  const rightInner = rightEl ? rightEl.querySelector('img') : null;
+  const topInner = topEl ? topEl.querySelector('img') : null;
+  const bottomInner = bottomEl ? bottomEl.querySelector('img') : null;
 
   /* Outside offsets */
   const LEFT_OUTSIDE = IS_PHONE ? -42 : IS_TABLET ? -32 : -25;
@@ -462,7 +456,6 @@ gsap.registerEase("contentReveal",
   const secondContent = document.getElementById('hero-second-content');
   const arcWrapper = document.getElementById('hero-arc-wrapper');
   const secondBottom = document.getElementById('hero-second-bottom');
-  const overlays = document.getElementById('hero-overlays');
 
   if (!circleBtn || !topLayer || !secondLayer) return;
 
@@ -507,15 +500,6 @@ gsap.registerEase("contentReveal",
     /* Zoom & fade top layer */
     timeline.to(topLayer, { scale: 5, duration: 1.5, ease: 'power4.inOut', force3D: true }, 0);
     timeline.to(topLayer, { autoAlpha: 0, duration: 0.42, ease: 'power2.out', pointerEvents: 'none' }, 1.08);
-
-    /* The foliage sits above the second layer, so it has to fly
-       past the camera and clear out with the top layer — otherwise
-       it would hang over the revealed content. */
-    if (overlays) {
-      timeline.to(overlays, { scale: 6.4, duration: 1.5, ease: 'power4.inOut', force3D: true }, 0);
-      timeline.to(overlays, { autoAlpha: 0, duration: 0.5, ease: 'power2.out' }, 1.0);
-    }
-
     timeline.set(secondLayer, { pointerEvents: 'auto' }, 1.28);
 
     /* Second layer content */
@@ -540,7 +524,7 @@ gsap.registerEase("contentReveal",
     isAnimating = true;
     circleBtn.style.pointerEvents = 'none';
 
-    gsap.killTweensOf([topLayer, overlays, secondContent, secondBottom, arcWrapper].filter(Boolean));
+    gsap.killTweensOf([topLayer, secondContent, secondBottom, arcWrapper].filter(Boolean));
 
     stabilizeSlider();
     requestAnimationFrame(function () {
