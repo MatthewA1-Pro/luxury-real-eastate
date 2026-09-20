@@ -706,54 +706,82 @@ h6 { font-size: var(--text-lg); }
   to { transform: rotate(360deg); }
 }
 
-/* Overlay Images (parallax layers) */
+/* Foliage depth layers (parallax)
+   Sits ABOVE the hero content (z-index 4) so the leaves frame the
+   viewport and you read the scene as being behind them. The Enter
+   button is z-index 5 and stays in front. Content is untouchable
+   through the leaves thanks to pointer-events: none. */
 .hero__overlay-images {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 4;
   pointer-events: none;
   overflow: hidden;
+  transform-origin: center center;
+  will-change: transform, opacity;
 }
 
+/* Deliberately NOT clipped — the old photo overlays needed a hard
+   box, leaves must be free to break out of theirs. The parent
+   above still clips everything to the hero. */
 .hero__overlay-img {
   position: absolute;
-  overflow: hidden;
+  overflow: visible;
   will-change: transform;
 }
 
-.hero__overlay-img img {
+.hero__overlay-img .foliage-art {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  overflow: visible;
   will-change: transform;
 }
 
+/* Depth of field. The camera is focused on the property, so the
+   nearer the leaf, the softer it is. Paired with the lighter
+   greens on the near tiers, this is what actually reads as 3D
+   rather than as flat shapes pasted over the photo. */
+.hero__overlay-img .foliage-tier {
+  will-change: transform;
+}
+
+.hero__overlay-img .foliage-tier[data-tier="1"] {
+  filter: blur(1.5px);
+}
+
+.hero__overlay-img .foliage-tier[data-tier="2"] {
+  filter: blur(4px);
+}
+
+/* Clusters hug the edges and overhang slightly, so no hard seam
+   is ever visible once the layers drift on scroll. */
 .hero__overlay-img--top {
-  top: -5%;
-  left: 10%;
-  width: 80%;
-  height: 40%;
+  top: -6%;
+  left: -5%;
+  width: 110%;
+  height: 34%;
 }
 
 .hero__overlay-img--bottom {
-  bottom: -5%;
-  left: 5%;
-  width: 90%;
-  height: 35%;
+  bottom: -6%;
+  left: -5%;
+  width: 110%;
+  height: 30%;
 }
 
 .hero__overlay-img--left {
-  left: -10%;
-  top: 15%;
-  width: 40%;
-  height: 70%;
+  left: -6%;
+  top: -5%;
+  width: 26%;
+  height: 110%;
 }
 
 .hero__overlay-img--right {
-  right: -10%;
-  top: 10%;
-  width: 40%;
-  height: 75%;
+  right: -6%;
+  top: -5%;
+  width: 26%;
+  height: 110%;
 }
 
 /* Second Layer */
@@ -2081,9 +2109,32 @@ textarea.contact-form__input {
     bottom: 8%;
   }
 
+  /* Keep all four depth layers on phones — hiding the side
+     clusters is what flattened the hero on mobile. They are
+     narrowed instead, so they frame a portrait screen without
+     crowding the headline. */
+  .hero__overlay-img--top {
+    height: 26%;
+  }
+
+  .hero__overlay-img--bottom {
+    height: 22%;
+  }
+
   .hero__overlay-img--left,
   .hero__overlay-img--right {
-    display: none;
+    width: 34%;
+    height: 112%;
+  }
+
+  /* Lighter blur on phones — large blur radii are the expensive
+     part of this effect on mobile GPUs. */
+  .hero__overlay-img .foliage-tier[data-tier="1"] {
+    filter: blur(1px);
+  }
+
+  .hero__overlay-img .foliage-tier[data-tier="2"] {
+    filter: blur(2.5px);
   }
 
   .section__header {

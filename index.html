@@ -51,20 +51,14 @@
       <img src="images/hero-bg.png" alt="Luxury estate aerial view" />
     </div>
 
-    <!-- Overlay Images (parallax layers) -->
-    <div class="hero__overlay-images" id="hero-overlays">
-      <div class="hero__overlay-img hero__overlay-img--top" id="overlay-top">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" alt="Greenery overlay" />
-      </div>
-      <div class="hero__overlay-img hero__overlay-img--bottom" id="overlay-bottom">
-        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80" alt="Garden overlay" />
-      </div>
-      <div class="hero__overlay-img hero__overlay-img--left" id="overlay-left">
-        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80" alt="House left" />
-      </div>
-      <div class="hero__overlay-img hero__overlay-img--right" id="overlay-right">
-        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80" alt="House right" />
-      </div>
+    <!-- Foliage depth layers — leaves are drawn by js/foliage.js.
+         Each host below is filled with an SVG split across three
+         depth tiers that parallax independently on scroll + mouse. -->
+    <div class="hero__overlay-images" id="hero-overlays" aria-hidden="true">
+      <div class="hero__overlay-img hero__overlay-img--top" id="overlay-top"></div>
+      <div class="hero__overlay-img hero__overlay-img--bottom" id="overlay-bottom"></div>
+      <div class="hero__overlay-img hero__overlay-img--left" id="overlay-left"></div>
+      <div class="hero__overlay-img hero__overlay-img--right" id="overlay-right"></div>
     </div>
 
     <!-- Top Layer -->
@@ -431,6 +425,9 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
   <script src="js/main.js"></script>
+  <!-- foliage.js must run before homepage.js — it creates the
+       SVG layers that the hero intro and mouse parallax animate -->
+  <script src="js/foliage.js"></script>
   <script src="js/homepage.js"></script>
 </body>
 </html>
