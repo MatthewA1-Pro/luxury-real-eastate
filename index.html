@@ -51,19 +51,22 @@
       <img src="images/hero-bg.png" alt="Luxury estate aerial view" />
     </div>
 
-    <!-- Overlay Images (parallax layers) -->
-    <div class="hero__overlay-images" id="hero-overlays">
+    <!-- Depth layers. Each is a full-bleed transparent cut-out of the
+         hero photograph, keyed on foliage so the edges follow real
+         leaves. They sit at four depths and parallax at different
+         rates, which is what produces the 3D. Order is far -> near. -->
+    <div class="hero__overlay-images" id="hero-overlays" aria-hidden="true">
       <div class="hero__overlay-img hero__overlay-img--top" id="overlay-top">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" alt="Greenery overlay" />
-      </div>
-      <div class="hero__overlay-img hero__overlay-img--bottom" id="overlay-bottom">
-        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80" alt="Garden overlay" />
+        <img src="images/layer-far.webp" alt="" />
       </div>
       <div class="hero__overlay-img hero__overlay-img--left" id="overlay-left">
-        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80" alt="House left" />
+        <img src="images/layer-left.webp" alt="" />
       </div>
       <div class="hero__overlay-img hero__overlay-img--right" id="overlay-right">
-        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80" alt="House right" />
+        <img src="images/layer-right.webp" alt="" />
+      </div>
+      <div class="hero__overlay-img hero__overlay-img--bottom" id="overlay-bottom">
+        <img src="images/layer-near.webp" alt="" />
       </div>
     </div>
 
@@ -206,7 +209,7 @@
       </div>
 
       <div class="hero__second-bottom-img" id="hero-second-bottom">
-        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600&q=80" alt="Garden landscape" />
+        <img src="images/layer-near.webp" alt="" />
       </div>
     </div>
   </section>

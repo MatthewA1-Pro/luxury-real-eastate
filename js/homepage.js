@@ -355,6 +355,59 @@ gsap.registerEase("contentReveal",
     });
   }
 
+  /* SCROLL PARALLAX — runs on every device
+     The mouse parallax above is behind `pointer: fine`, so phones and
+     tablets had no depth at all once the intro finished. This drives
+     the same four layers from scroll position instead.
+
+     It writes x/y in PIXELS while the intro and the mouse parallax
+     own xPercent/yPercent. GSAP composes the two into one transform,
+     so the three never overwrite each other. */
+  if (heroRoot && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
+    /* px of travel across a full hero scroll, far -> near */
+    const SCROLL_TRAVEL = {
+      top: IS_PHONE ? 26 : 34,
+      left: IS_PHONE ? 52 : 66,
+      right: IS_PHONE ? 52 : 66,
+      bottom: IS_PHONE ? 104 : 128
+    };
+
+    const scrollLayers = [
+      { el: topEl, axis: 'y', dir: -1, travel: SCROLL_TRAVEL.top },
+      { el: leftEl, axis: 'x', dir: -1, travel: SCROLL_TRAVEL.left },
+      { el: rightEl, axis: 'x', dir: 1, travel: SCROLL_TRAVEL.right },
+      { el: bottomEl, axis: 'y', dir: 1, travel: SCROLL_TRAVEL.bottom }
+    ].filter(function (l) { return l.el; });
+
+    scrollLayers.forEach(function (layer) {
+      layer.set = gsap.quickSetter(layer.el, layer.axis, 'px');
+    });
+
+    let scrollProgress = 0;
+    let scrollQueued = false;
+
+    function renderScroll() {
+      scrollQueued = false;
+      scrollLayers.forEach(function (layer) {
+        layer.set(scrollProgress * layer.travel * layer.dir);
+      });
+    }
+
+    function onHeroScroll() {
+      const height = heroRoot.offsetHeight || window.innerHeight;
+      scrollProgress = Math.min(1, Math.max(0, window.scrollY / height));
+      if (!scrollQueued) {
+        scrollQueued = true;
+        requestAnimationFrame(renderScroll);
+      }
+    }
+
+    window.addEventListener('scroll', onHeroScroll, { passive: true });
+    window.addEventListener('resize', onHeroScroll);
+    onHeroScroll();
+  }
+
 })();
 
 /* ============================================================

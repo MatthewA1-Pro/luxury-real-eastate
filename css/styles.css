@@ -728,32 +728,18 @@ h6 { font-size: var(--text-lg); }
   will-change: transform;
 }
 
-.hero__overlay-img--top {
-  top: -5%;
-  left: 10%;
-  width: 80%;
-  height: 40%;
-}
-
-.hero__overlay-img--bottom {
-  bottom: -5%;
-  left: 5%;
-  width: 90%;
-  height: 35%;
-}
-
-.hero__overlay-img--left {
-  left: -10%;
-  top: 15%;
-  width: 40%;
-  height: 70%;
-}
-
+/* Every layer is full-bleed and cropped exactly like the hero
+   background, so each one lands in register with the photo it was
+   cut from. The intro animation in homepage.js then pushes each
+   one outward (LEFT_OUTSIDE, RIGHT_OUTSIDE, ...) so they read as
+   foreground framing rather than a copy sitting on its original. */
+.hero__overlay-img--top,
+.hero__overlay-img--bottom,
+.hero__overlay-img--left,
 .hero__overlay-img--right {
-  right: -10%;
-  top: 10%;
-  width: 40%;
-  height: 75%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* Second Layer */
@@ -870,6 +856,9 @@ h6 { font-size: var(--text-lg); }
   max-width: none;
   height: 100%;
   object-fit: cover;
+  /* anchor to the foot of the layer so the planting shows, not the
+     transparent upper half of the cut-out. Box size is unchanged. */
+  object-position: center bottom;
   transform: translate3d(0, 0, 0) scale(1.04);
   transform-origin: center center;
   will-change: transform;
@@ -2081,10 +2070,9 @@ textarea.contact-form__input {
     bottom: 8%;
   }
 
-  .hero__overlay-img--left,
-  .hero__overlay-img--right {
-    display: none;
-  }
+  /* The side layers used to be hidden here, which is why phones had
+     no depth at all. They stay — a portrait crop shows less of them,
+     but they still carry the parallax. */
 
   .section__header {
     flex-direction: column;
