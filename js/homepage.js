@@ -136,28 +136,30 @@ var FEATURED_PROPERTIES = [
 
 /* ============================================================
    HERO — 3D TILT ON FEATURED RESIDENCE IMAGE
-   Mouse-tracked perspective tilt on desktop, plus a continuous
-   gentle idle sway so the depth effect still reads on touch
-   devices that can't fire mousemove.
+   The whole image card (not just the clipped photo inside it)
+   tilts in 3D, so the rotation reads clearly along its rounded
+   edges and shadow. Mouse-tracked on desktop; a continuous idle
+   wobble plus a scroll-linked tilt keep the depth effect visible
+   on touch devices that never fire mousemove.
    ============================================================ */
 (function initHeroTilt() {
   var frame = document.getElementById('hero-image-frame');
-  var img = frame ? frame.querySelector('img') : null;
-  if (!frame || !img) return;
+  if (!frame) return;
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var canHover = window.matchMedia('(pointer: fine)').matches;
 
   var targetRX = 0, targetRY = 0, curRX = 0, curRY = 0;
   var idlePhase = Math.random() * Math.PI * 2;
+  var scrollTilt = 0;
 
   if (canHover) {
     frame.addEventListener('mousemove', function (e) {
       var rect = frame.getBoundingClientRect();
       var px = (e.clientX - rect.left) / rect.width;
       var py = (e.clientY - rect.top) / rect.height;
-      targetRY = (px - 0.5) * 16;
-      targetRX = -(py - 0.5) * 12;
+      targetRY = (px - 0.5) * 20;
+      targetRX = -(py - 0.5) * 14;
     });
 
     frame.addEventListener('mouseleave', function () {
@@ -166,12 +168,38 @@ var FEATURED_PROPERTIES = [
     });
   }
 
+  /* Scroll-linked tilt: as the card moves through the viewport the
+     rotation shifts too, so phones/tablets (no cursor) still get an
+     obvious, controllable 3D reaction as the visitor scrolls. */
+  function onScroll() {
+    var rect = frame.getBoundingClientRect();
+    var vh = window.innerHeight || 1;
+    var centerOffset = (rect.top + rect.height / 2 - vh / 2) / vh;
+    scrollTilt = Math.max(-1, Math.min(1, centerOffset)) * 10;
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
   function tick(t) {
-    curRX += (targetRX - curRX) * 0.07;
-    curRY += (targetRY - curRY) * 0.07;
-    var idleY = reduceMotion ? 0 : Math.sin(t / 1600 + idlePhase) * 2.4;
-    img.style.transform =
-      'scale(1.08) rotateX(' + curRX.toFixed(2) + 'deg) rotateY(' + (curRY + idleY).toFixed(2) + 'deg)';
+    curRX += (targetRX - curRX) * 0.06;
+    curRY += (targetRY - curRY) * 0.06;
+
+    var idleRY = reduceMotion ? 0 : Math.sin(t / 2200 + idlePhase) * 6;
+    var idleRX = reduceMotion ? 0 : Math.cos(t / 2800 + idlePhase) * 3;
+
+    var finalRX = curRX + idleRX;
+    var finalRY = curRY + idleRY + scrollTilt;
+
+    frame.style.transform =
+      'rotateX(' + finalRX.toFixed(2) + 'deg) rotateY(' + finalRY.toFixed(2) + 'deg)';
+
+    /* Shadow drifts opposite the tilt so the card reads as lifted
+       off the page rather than just rotated in place. */
+    var shadowX = (-finalRY * 1.6).toFixed(1);
+    var shadowY = (18 + finalRX * 1.6).toFixed(1);
+    frame.style.boxShadow = shadowX + 'px ' + shadowY + 'px 55px rgba(0, 0, 0, 0.5)';
+
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
