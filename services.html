@@ -270,7 +270,7 @@
         </div>
         <div class="footer__col">
           <h4>Newsletter</h4>
-          <p style="font-size:0.875rem;color:#6a6a6a;margin-bottom:1.5rem;">Get exclusive access to new listings before they hit the market.</p>
+          <p class="footer__newsletter-desc">Get exclusive access to new listings before they hit the market.</p>
           <form class="footer__newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed to Aurelia VIP Private Access!');">
             <input type="email" placeholder="Your email address" class="footer__newsletter-input" required />
             <button type="submit">Join</button>
@@ -294,13 +294,13 @@
       <p>Connect with a senior luxury specialist for a tailored portfolio review.</p>
       <form onsubmit="event.preventDefault(); alert('Thank you! Your private advisor will contact you within 2 hours.'); document.getElementById('tour-modal').classList.remove('active');">
         <div style="margin-bottom:1rem;">
-          <input type="text" placeholder="Full Name" required style="width:100%;padding:12px 16px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:6px;" />
+          <input type="text" placeholder="Full Name" required />
         </div>
         <div style="margin-bottom:1rem;">
-          <input type="email" placeholder="Email Address" required style="width:100%;padding:12px 16px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:6px;" />
+          <input type="email" placeholder="Email Address" required />
         </div>
         <div style="margin-bottom:1rem;">
-          <input type="tel" placeholder="Phone Number" style="width:100%;padding:12px 16px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:6px;" />
+          <input type="tel" placeholder="Phone Number" />
         </div>
         <button type="submit" class="btn btn--primary" style="width:100%;">Submit Request</button>
       </form>

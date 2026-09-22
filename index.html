@@ -50,53 +50,53 @@
        HERO SECTION
        ============================================================ -->
   <section class="hero" id="hero">
-    <div class="container">
-      <div class="hero__grid">
-        <div class="hero__content">
-          <span class="hero__eyebrow label">Premium Urban Living</span>
-          <h1 class="hero__title">Future <em>Living</em> Designed for Visionaries</h1>
-          <p class="hero__lead">Discover an exclusive collection of the world's most extraordinary residences — where architectural excellence meets timeless design, curated for those who demand nothing less.</p>
-          <div class="hero__actions">
-            <a href="listings.html" class="btn btn--primary">
-              Explore Properties
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <button type="button" class="btn btn--outline" onclick="document.getElementById('tour-modal').classList.add('active')">Book Consultation</button>
-          </div>
-          <div class="hero__proof">
-            <div class="hero__proof-avatars">
-              <img src="images/property-1.png" alt="" />
-              <img src="images/property-2.png" alt="" />
-              <img src="images/property-4.png" alt="" />
-            </div>
-            <p class="hero__proof-text"><strong>500+</strong> discerning homeowners<br>trusted Aurelia since 2001</p>
+    <div class="hero__media" id="hero-media">
+      <div class="hero__media-clip">
+        <div class="hero__media-inner" id="hero-image-frame">
+          <img src="images/property-3.png" alt="Modern glass-walled residence overlooking the coast at dusk" />
+        </div>
+      </div>
+      <div class="hero__media-fade" aria-hidden="true"></div>
+
+      <div class="hero__floating-card reveal-scale">
+        <h4>Luxury Living</h4>
+        <p>Where architectural excellence blends with smart design. Homes for lovers of luxury, innovation, and timeless style.</p>
+        <div class="hero__floating-stat">
+          <span class="hero__floating-number">24</span>
+          <div class="hero__floating-meta">
+            <span class="hero__floating-label">Premium Residences</span>
+            <span class="hero__floating-sub"><span class="hero__availability-dot"></span>Availability: Open</span>
           </div>
         </div>
+      </div>
 
-        <div class="hero__visual">
-          <div class="hero__image-glow" aria-hidden="true"></div>
-          <div class="hero__image-frame" id="hero-image-frame">
-            <img src="images/property-3.png" alt="Modern glass-walled residence overlooking the coast at dusk" />
-          </div>
+      <div class="hero__dot-nav" id="hero-dot-nav">
+        <span class="hero__dot-indicator" id="hero-dot-indicator"></span>
+        <span class="hero__dot hero__dot--active" data-index="0">1</span>
+        <span class="hero__dot" data-index="1">2</span>
+        <span class="hero__dot" data-index="2">3</span>
+      </div>
+    </div>
 
-          <div class="hero__floating-card reveal-scale">
-            <h4>Luxury Living</h4>
-            <p>Where architectural excellence blends with smart design. Homes for lovers of luxury, innovation, and timeless style.</p>
-            <div class="hero__floating-stat">
-              <span class="hero__floating-number">24</span>
-              <div class="hero__floating-meta">
-                <span class="hero__floating-label">Premium Residences</span>
-                <span class="hero__floating-sub"><span class="hero__availability-dot"></span>Availability: Open</span>
-              </div>
-            </div>
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__eyebrow label">Premium Urban Living</span>
+        <h1 class="hero__title">Future <em>Living</em> Designed for Visionaries</h1>
+        <p class="hero__lead">Discover an exclusive collection of the world's most extraordinary residences — where architectural excellence meets timeless design, curated for those who demand nothing less.</p>
+        <div class="hero__actions">
+          <a href="listings.html" class="btn btn--primary">
+            Explore Properties
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <button type="button" class="btn btn--outline" onclick="document.getElementById('tour-modal').classList.add('active')">Book Consultation</button>
+        </div>
+        <div class="hero__proof">
+          <div class="hero__proof-avatars">
+            <img src="images/property-1.png" alt="" />
+            <img src="images/property-2.png" alt="" />
+            <img src="images/property-4.png" alt="" />
           </div>
-
-          <div class="hero__dot-nav" id="hero-dot-nav">
-            <span class="hero__dot-indicator" id="hero-dot-indicator"></span>
-            <span class="hero__dot hero__dot--active" data-index="0">1</span>
-            <span class="hero__dot" data-index="1">2</span>
-            <span class="hero__dot" data-index="2">3</span>
-          </div>
+          <p class="hero__proof-text"><strong>500+</strong> discerning homeowners<br>trusted Aurelia since 2001</p>
         </div>
       </div>
     </div>
@@ -575,7 +575,7 @@
         </div>
         <div class="footer__col">
           <h4>Newsletter</h4>
-          <p class="footer__newsletter-desc" style="font-size:0.875rem;color:#6a6a6a;margin-bottom:1.5rem;">Get exclusive access to new listings before they hit the market.</p>
+          <p class="footer__newsletter-desc">Get exclusive access to new listings before they hit the market.</p>
           <form class="footer__newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed to Aurelia VIP Private Access!');">
             <input type="email" placeholder="Your email address" class="footer__newsletter-input" required />
             <button type="submit">Join</button>
@@ -601,13 +601,13 @@
       <p>Connect with a senior luxury specialist for a tailored portfolio review.</p>
       <form onsubmit="event.preventDefault(); alert('Thank you! Your private advisor will contact you within 2 hours.'); document.getElementById('tour-modal').classList.remove('active');">
         <div style="margin-bottom:1rem;">
-          <input type="text" placeholder="Full Name" required style="width:100%;padding:12px 16px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:6px;" />
+          <input type="text" placeholder="Full Name" required />
         </div>
         <div style="margin-bottom:1rem;">
-          <input type="email" placeholder="Email Address" required style="width:100%;padding:12px 16px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:6px;" />
+          <input type="email" placeholder="Email Address" required />
         </div>
         <div style="margin-bottom:1rem;">
-          <input type="tel" placeholder="Phone Number" style="width:100%;padding:12px 16px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:6px;" />
+          <input type="tel" placeholder="Phone Number" />
         </div>
         <button type="submit" class="btn btn--primary" style="width:100%;">Submit Request</button>
       </form>
