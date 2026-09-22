@@ -24,7 +24,6 @@
       <div class="nav__links">
         <a href="index.html" class="nav__link nav__link--active">Home</a>
         <a href="listings.html" class="nav__link">Properties</a>
-        <a href="#virtual-3d-showcase" class="nav__link">3D Showcase</a>
         <a href="#destinations" class="nav__link">Destinations</a>
         <a href="#amenities" class="nav__link">Amenities</a>
         <a href="#calculator" class="nav__link">Calculator</a>
@@ -42,7 +41,6 @@
   <div class="nav__mobile" id="nav-mobile">
     <a href="index.html">Home</a>
     <a href="listings.html">Properties</a>
-    <a href="#virtual-3d-showcase">3D Showcase</a>
     <a href="#destinations">Destinations</a>
     <a href="#amenities">Amenities</a>
     <a href="#calculator">Calculator</a>
@@ -248,97 +246,6 @@
 
       <div class="featured__grid" id="featured-grid">
         <!-- Populated dynamically by JS with 3D tilt cards -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       NEW SECTION 1: THREE.JS INTERACTIVE 3D VIRTUAL SHOWCASE
-       ============================================================ -->
-  <section class="section section--dark three-showcase-section" id="virtual-3d-showcase">
-    <div class="container">
-      <div class="section__header reveal" style="text-align: center; justify-content: center;">
-        <div>
-          <span class="label">Real-Time WebGL Experience</span>
-          <h2>Interactive <span class="text-accent">3D Architectural</span> Showcase</h2>
-          <p style="max-width: 680px; margin: 1rem auto 0; color: var(--color-secondary);">
-            Rotate, inspect, and experience our flagship modern luxury concept residence in full real-time 3D. Click hotspots to explore architectural specs.
-          </p>
-        </div>
-      </div>
-
-      <div class="three-viewport-card reveal-scale">
-        <!-- WebGL Canvas Container -->
-        <div class="three-viewport" id="three-container">
-          <canvas id="three-canvas"></canvas>
-
-          <!-- 3D Overlay Hotspots -->
-          <div class="hotspot-pin" style="top: 35%; left: 42%;" data-spot="pool">
-            <div class="hotspot-pin__dot"></div>
-            <div class="hotspot-pin__tooltip">
-              <strong>Cantilevered Infinity Pool</strong>
-              <span>1,200 sqft glass deck with underwater audio</span>
-            </div>
-          </div>
-
-          <div class="hotspot-pin" style="top: 52%; left: 58%;" data-spot="lounge">
-            <div class="hotspot-pin__dot"></div>
-            <div class="hotspot-pin__tooltip">
-              <strong>Glass Pavilion Lounge</strong>
-              <span>Floor-to-ceiling motorized acoustic glass</span>
-            </div>
-          </div>
-
-          <div class="hotspot-pin" style="top: 25%; left: 68%;" data-spot="suite">
-            <div class="hotspot-pin__dot"></div>
-            <div class="hotspot-pin__tooltip">
-              <strong>Sky Suite Penthouse</strong>
-              <span>360° panoramic master suite & private spa</span>
-            </div>
-          </div>
-
-          <div class="hotspot-pin" style="top: 70%; left: 32%;" data-spot="vault">
-            <div class="hotspot-pin__dot"></div>
-            <div class="hotspot-pin__tooltip">
-              <strong>Subterranean Wine Vault</strong>
-              <span>Climate-controlled 800-bottle glass repository</span>
-            </div>
-          </div>
-
-          <!-- Controls HUD -->
-          <div class="three-hud">
-            <div class="three-hud__hint">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M15 5l-3-3-3 3M15 19l-3 3-3-3M5 15l-3-3 3-3M19 15l3-3-3-3"/></svg>
-              <span>Click & Drag to Rotate 360°</span>
-            </div>
-            <div class="three-hud__buttons">
-              <button class="three-btn active" data-cam="default">360° Exterior</button>
-              <button class="three-btn" data-cam="pool">Pool Deck</button>
-              <button class="three-btn" data-cam="lounge">Living Pavilion</button>
-              <button class="three-btn" data-cam="suite">Sky Suite</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="three-specs-bar">
-          <div class="three-spec">
-            <span class="three-spec__val">14,200</span>
-            <span class="three-spec__lbl">Total SQFT</span>
-          </div>
-          <div class="three-spec">
-            <span class="three-spec__val">6 Beds</span>
-            <span class="three-spec__lbl">Master Suites</span>
-          </div>
-          <div class="three-spec">
-            <span class="three-spec__val">8 Baths</span>
-            <span class="three-spec__lbl">Spa Bathrooms</span>
-          </div>
-          <div class="three-spec">
-            <span class="three-spec__val">$24.5M</span>
-            <span class="three-spec__lbl">Estimated Value</span>
-          </div>
-          <button class="btn btn--primary" onclick="alert('3D Virtual Tour Consultation Requested! Our private specialist will contact you shortly.')">Book Private 3D Tour</button>
-        </div>
       </div>
     </div>
   </section>
@@ -800,7 +707,6 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/homepage.js"></script>
 </body>

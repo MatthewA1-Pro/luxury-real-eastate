@@ -101,11 +101,11 @@ const PROPERTIES = {
     lotSize: "N/A",
     garage: "2 Spaces",
     images: [
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80",
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80"
+      "images/property-4.png",
+      "images/property-3.png",
+      "images/property-5.png",
+      "images/property-1.png",
+      "images/property-2.png"
     ],
     features: [
       "Central Park Views", "Private Elevator", "Fireplace",
@@ -122,10 +122,11 @@ const PROPERTIES = {
     description2: "Residents enjoy a private beach club, 18-hole golf course, spa, and deep-water marina. The unit features a gourmet kitchen, expansive balcony with summer kitchen, and a master suite with dual walk-in closets and ocean-view soaking tub.",
     beds: 3, baths: 4, sqft: "4,100", yearBuilt: "2020", lotSize: "N/A", garage: "2 Spaces",
     images: [
-      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80"
+      "images/property-5.png",
+      "images/property-1.png",
+      "images/property-2.png",
+      "images/property-3.png",
+      "images/property-4.png"
     ],
     features: ["Bay Views", "Beach Club", "Golf Course", "Marina", "Summer Kitchen", "Spa Access", "Italian Marble", "Concierge", "Pool"]
   },
@@ -137,10 +138,11 @@ const PROPERTIES = {
     description2: "Features include ski-in/ski-out access, an indoor lap pool and spa, professional home theater, two-story library, climate-controlled wine vault for 3,000 bottles, and a separate caretaker's residence.",
     beds: 8, baths: 10, sqft: "14,200", yearBuilt: "2018", lotSize: "5 Acres", garage: "6 Cars",
     images: [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80"
+      "images/hero-bg.png",
+      "images/property-1.png",
+      "images/property-2.png",
+      "images/property-3.png",
+      "images/property-4.png"
     ],
     features: ["Ski-In/Ski-Out", "Indoor Pool", "Home Theater", "Wine Vault", "Mountain Views", "Spa", "Library", "Caretaker Suite", "Heated Driveway"]
   },
@@ -152,10 +154,11 @@ const PROPERTIES = {
     description2: "Includes a private infinity pool, outdoor bathtub, direct ocean slide, butler service, and a private 40-foot yacht. Every room offers uninterrupted Indian Ocean views.",
     beds: 4, baths: 5, sqft: "5,600", yearBuilt: "2023", lotSize: "Private Overwater", garage: "N/A",
     images: [
-      "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80",
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80"
+      "images/property-1.png",
+      "images/property-2.png",
+      "images/property-3.png",
+      "images/property-4.png",
+      "images/property-5.png"
     ],
     features: ["Overwater Living", "Glass Floor", "Infinity Pool", "Private Yacht", "Butler Service", "Ocean Slide", "Spa", "Snorkeling", "Sunset Deck"]
   },
@@ -167,10 +170,11 @@ const PROPERTIES = {
     description2: "Features include a ballroom-sized reception, Clive Christian kitchen, indoor pool, private cinema, and 24-hour concierge. The master suite occupies an entire floor with bespoke dressing rooms.",
     beds: 5, baths: 7, sqft: "8,900", yearBuilt: "1890 (Renovated 2024)", lotSize: "N/A", garage: "3 Spaces",
     images: [
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80"
+      "images/property-2.png",
+      "images/property-3.png",
+      "images/property-4.png",
+      "images/property-5.png",
+      "images/property-1.png"
     ],
     features: ["Hyde Park Views", "Indoor Pool", "Private Cinema", "Rooftop Terrace", "24hr Concierge", "Clive Christian Kitchen", "Ballroom", "Bespoke Dressing", "Wine Room"]
   }
