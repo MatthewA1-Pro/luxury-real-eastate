@@ -713,6 +713,8 @@ h6 { font-size: var(--text-lg); }
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
+  perspective: 1200px;
+  transform-style: preserve-3d;
 }
 
 .hero__overlay-img {
@@ -881,6 +883,73 @@ h6 { font-size: var(--text-lg); }
   mix-blend-mode: difference;
 }
 
+/* Particle Canvas */
+.hero__particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Cinematic Scroll Indicator */
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 2.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  animation: heroScrollFadeIn 1s ease 3.8s forwards;
+}
+
+.hero__scroll-text {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  border-radius: 1px;
+}
+
+.hero__scroll-line-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--color-accent), transparent);
+  animation: heroScrollPulse 2s ease-in-out infinite;
+  transform-origin: top;
+}
+
+@keyframes heroScrollPulse {
+  0%   { transform: scaleY(0); opacity: 0; }
+  30%  { opacity: 1; }
+  60%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+@keyframes heroScrollFadeIn {
+  to { opacity: 1; }
+}
+
 /* ============================================================
    PROPERTY CARDS
    ============================================================ */
@@ -892,10 +961,11 @@ h6 { font-size: var(--text-lg); }
   border: 1px solid var(--color-dark-border);
   transition: all var(--transition-slow);
   cursor: pointer;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .property-card:hover {
-  transform: translateY(-8px);
   border-color: rgba(223, 197, 98, 0.2);
   box-shadow: var(--shadow-lg), var(--shadow-glow);
 }
@@ -1919,50 +1989,73 @@ textarea.contact-form__input {
 }
 
 /* ============================================================
-   SCROLL ANIMATION CLASSES
+   SCROLL ANIMATION CLASSES (Enhanced 3D)
    ============================================================ */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(60px) rotateX(8deg);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: bottom center;
 }
 
 .reveal.revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) rotateX(0deg);
 }
 
 .reveal-left {
   opacity: 0;
-  transform: translateX(-40px);
-  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateX(-60px) rotateY(8deg);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: left center;
 }
 
 .reveal-left.revealed {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(0) rotateY(0deg);
 }
 
 .reveal-right {
   opacity: 0;
-  transform: translateX(40px);
-  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateX(60px) rotateY(-8deg);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: right center;
 }
 
 .reveal-right.revealed {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(0) rotateY(0deg);
 }
 
 .reveal-scale {
   opacity: 0;
-  transform: scale(0.95);
-  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: scale(0.88) translateZ(-60px);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal-scale.revealed {
   opacity: 1;
-  transform: scale(1);
+  transform: scale(1) translateZ(0);
+}
+
+/* 3D Property Card Tilt Inner Glow */
+.property-card__glow {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--border-radius-lg);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.property-card:hover .property-card__glow {
+  opacity: 1;
+}
+
+/* Magnetic Button styles */
+.btn--magnetic {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background var(--transition-base), color var(--transition-base), box-shadow var(--transition-base);
 }
 
 /* ============================================================

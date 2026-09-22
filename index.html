@@ -51,21 +51,21 @@
       <img src="images/hero-bg.png" alt="Luxury estate aerial view" />
     </div>
 
-    <!-- Depth layers. Each is a full-bleed transparent cut-out of the
-         hero photograph, keyed on foliage so the edges follow real
-         leaves. They sit at four depths and parallax at different
-         rates, which is what produces the 3D. Order is far -> near. -->
-    <div class="hero__overlay-images" id="hero-overlays" aria-hidden="true">
-      <div class="hero__overlay-img hero__overlay-img--top" id="overlay-top">
+    <!-- Particle Canvas -->
+    <canvas class="hero__particles" id="hero-particles" aria-hidden="true"></canvas>
+
+    <!-- Depth layers with 3D perspective container -->
+    <div class="hero__overlay-images" id="hero-overlays" aria-hidden="true" data-3d-scene>
+      <div class="hero__overlay-img hero__overlay-img--top" id="overlay-top" data-depth="0.15">
         <img src="images/layer-far.webp" alt="" />
       </div>
-      <div class="hero__overlay-img hero__overlay-img--left" id="overlay-left">
+      <div class="hero__overlay-img hero__overlay-img--left" id="overlay-left" data-depth="0.35">
         <img src="images/layer-left.webp" alt="" />
       </div>
-      <div class="hero__overlay-img hero__overlay-img--right" id="overlay-right">
+      <div class="hero__overlay-img hero__overlay-img--right" id="overlay-right" data-depth="0.45">
         <img src="images/layer-right.webp" alt="" />
       </div>
-      <div class="hero__overlay-img hero__overlay-img--bottom" id="overlay-bottom">
+      <div class="hero__overlay-img hero__overlay-img--bottom" id="overlay-bottom" data-depth="0.7">
         <img src="images/layer-near.webp" alt="" />
       </div>
     </div>
@@ -135,6 +135,14 @@
         <div class="hero__circle-icon">
           <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
         </div>
+      </div>
+    </div>
+
+    <!-- Cinematic Scroll Indicator -->
+    <div class="hero__scroll-indicator" id="hero-scroll-indicator">
+      <span class="hero__scroll-text">Scroll to Explore</span>
+      <div class="hero__scroll-line">
+        <div class="hero__scroll-line-inner"></div>
       </div>
     </div>
 
@@ -433,6 +441,7 @@
        ============================================================ -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/homepage.js"></script>
 </body>
