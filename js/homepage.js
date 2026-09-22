@@ -91,41 +91,47 @@ var FEATURED_PROPERTIES = [
   var grid = document.getElementById('featured-grid');
   if (!grid) return;
 
-  grid.innerHTML = FEATURED_PROPERTIES.map(function (p, i) {
-    return '\
-      <a href="listing.html?id=' + p.id + '" class="property-card reveal" data-delay="' + (i * 150) + '">\
-        <div class="property-card__image">\
-          <img src="' + p.image + '" alt="' + p.name + '" loading="lazy" />\
-          <span class="property-card__badge property-card__badge--' + p.badgeType + '">' + p.badge + '</span>\
-          <button class="property-card__favorite" aria-label="Save property" onclick="event.preventDefault(); this.classList.toggle(\'active\');">\
-            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>\
-          </button>\
-          <div class="property-card__overlay"></div>\
-        </div>\
-        <div class="property-card__body">\
-          <div class="property-card__location">\
-            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>\
-            ' + p.location + '\
+  if (!grid.children.length) {
+    grid.innerHTML = FEATURED_PROPERTIES.map(function (p, i) {
+      return '\
+        <a href="listing.html?id=' + p.id + '" class="property-card reveal" data-delay="' + (i * 150) + '">\
+          <div class="property-card__image">\
+            <img src="' + p.image + '" alt="' + p.name + '" loading="lazy" />\
+            <span class="property-card__badge property-card__badge--' + p.badgeType + '">' + p.badge + '</span>\
+            <button class="property-card__favorite" aria-label="Save property" onclick="event.preventDefault(); this.classList.toggle(\'active\');">\
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>\
+            </button>\
+            <div class="property-card__overlay"></div>\
           </div>\
-          <h3 class="property-card__name">' + p.name + '</h3>\
-          <div class="property-card__price">' + p.price + '</div>\
-          <div class="property-card__stats">\
-            <div class="property-card__stat">\
-              <svg viewBox="0 0 24 24"><path d="M3 7v11a2 2 0 002 2h14a2 2 0 002-2V7M21 10H3M7 20V10m5 10V10m5 10V10"/></svg>\
-              ' + p.beds + ' Beds\
+          <div class="property-card__body">\
+            <div class="property-card__location">\
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>\
+              ' + p.location + '\
             </div>\
-            <div class="property-card__stat">\
-              <svg viewBox="0 0 24 24"><path d="M4 12h16a1 1 0 011 1v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-3a1 1 0 011-1zM6 12V5a2 2 0 012-2h3a2 2 0 012 2v7"/></svg>\
-              ' + p.baths + ' Baths\
-            </div>\
-            <div class="property-card__stat">\
-              <svg viewBox="0 0 24 24"><path d="M3 21h18M3 7l9-4 9 4M5 7v14M19 7v14"/></svg>\
-              ' + p.sqft + ' sqft\
+            <h3 class="property-card__name">' + p.name + '</h3>\
+            <div class="property-card__price">' + p.price + '</div>\
+            <div class="property-card__stats">\
+              <div class="property-card__stat">\
+                <svg viewBox="0 0 24 24"><path d="M3 7v11a2 2 0 002 2h14a2 2 0 002-2V7M21 10H3M7 20V10m5 10V10m5 10V10"/></svg>\
+                ' + p.beds + ' Beds\
+              </div>\
+              <div class="property-card__stat">\
+                <svg viewBox="0 0 24 24"><path d="M4 12h16a1 1 0 011 1v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-3a1 1 0 011-1zM6 12V5a2 2 0 012-2h3a2 2 0 012 2v7"/></svg>\
+                ' + p.baths + ' Baths\
+              </div>\
+              <div class="property-card__stat">\
+                <svg viewBox="0 0 24 24"><path d="M3 21h18M3 7l9-4 9 4M5 7v14M19 7v14"/></svg>\
+                ' + p.sqft + ' sqft\
+              </div>\
             </div>\
           </div>\
-        </div>\
-      </a>';
-  }).join('');
+        </a>';
+    }).join('');
+  }
+
+  if (typeof ScrollTrigger !== 'undefined') {
+    ScrollTrigger.refresh();
+  }
 })();
 
 /* ============================================================

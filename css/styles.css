@@ -192,7 +192,7 @@ h6 { font-size: var(--text-lg); }
 }
 
 .section {
-  padding: var(--space-5xl) 0;
+  padding: var(--space-3xl) 0;
   position: relative;
 }
 
@@ -1992,9 +1992,8 @@ textarea.contact-form__input {
    SCROLL ANIMATION CLASSES (Enhanced 3D)
    ============================================================ */
 .reveal {
-  opacity: 0;
-  transform: translateY(60px) rotateX(8deg);
-  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 1;
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   transform-origin: bottom center;
 }
 
@@ -2004,9 +2003,8 @@ textarea.contact-form__input {
 }
 
 .reveal-left {
-  opacity: 0;
-  transform: translateX(-60px) rotateY(8deg);
-  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 1;
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   transform-origin: left center;
 }
 
@@ -2016,9 +2014,8 @@ textarea.contact-form__input {
 }
 
 .reveal-right {
-  opacity: 0;
-  transform: translateX(60px) rotateY(-8deg);
-  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 1;
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   transform-origin: right center;
 }
 
@@ -2028,9 +2025,8 @@ textarea.contact-form__input {
 }
 
 .reveal-scale {
-  opacity: 0;
-  transform: scale(0.88) translateZ(-60px);
-  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 1;
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal-scale.revealed {
