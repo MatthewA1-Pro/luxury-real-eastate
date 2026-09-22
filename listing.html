@@ -18,9 +18,12 @@
       <div class="nav__links">
         <a href="index.html" class="nav__link">Home</a>
         <a href="listings.html" class="nav__link">Properties</a>
-        <a href="index.html#about" class="nav__link">About</a>
-        <a href="index.html#contact" class="nav__link">Contact</a>
-        <a href="listings.html" class="nav__cta">View Listings</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="services.html" class="nav__link">Services</a>
+        <button type="button" class="nav__cta" onclick="document.getElementById('tour-modal').classList.add('active')">
+          Contact Us
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
       </div>
       <div class="nav__toggle" id="nav-toggle">
         <span></span><span></span><span></span>
@@ -30,8 +33,9 @@
   <div class="nav__mobile" id="nav-mobile">
     <a href="index.html">Home</a>
     <a href="listings.html">Properties</a>
-    <a href="index.html#about">About</a>
-    <a href="index.html#contact">Contact</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <button type="button" onclick="document.getElementById('tour-modal').classList.add('active')">Contact Us</button>
   </div>
 
   <!-- Gallery -->
@@ -176,8 +180,8 @@
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="listings.html">Properties</a></li>
-            <li><a href="index.html#about">About Us</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
           </ul>
         </div>
         <div class="footer__col">
@@ -204,6 +208,29 @@
       </div>
     </div>
   </footer>
+
+  <!-- Consultation Modal -->
+  <div class="tour-modal" id="tour-modal">
+    <div class="tour-modal__backdrop" onclick="document.getElementById('tour-modal').classList.remove('active')"></div>
+    <div class="tour-modal__box">
+      <button class="tour-modal__close" onclick="document.getElementById('tour-modal').classList.remove('active')">&times;</button>
+      <span class="label">Private Access</span>
+      <h3>Schedule Private Consultation</h3>
+      <p>Connect with a senior luxury specialist for a tailored portfolio review.</p>
+      <form onsubmit="event.preventDefault(); alert('Thank you! Your private advisor will contact you within 2 hours.'); document.getElementById('tour-modal').classList.remove('active');">
+        <div style="margin-bottom:1rem;">
+          <input type="text" placeholder="Full Name" required style="width:100%;padding:12px 16px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:6px;" />
+        </div>
+        <div style="margin-bottom:1rem;">
+          <input type="email" placeholder="Email Address" required style="width:100%;padding:12px 16px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:6px;" />
+        </div>
+        <div style="margin-bottom:1rem;">
+          <input type="tel" placeholder="Phone Number" style="width:100%;padding:12px 16px;background:#1a1a1a;border:1px solid #333;color:#fff;border-radius:6px;" />
+        </div>
+        <button type="submit" class="btn btn--primary" style="width:100%;">Submit Request</button>
+      </form>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="js/main.js"></script>

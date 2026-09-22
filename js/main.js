@@ -29,7 +29,7 @@
       document.body.style.overflow = mobile.classList.contains('active') ? 'hidden' : '';
     });
 
-    mobile.querySelectorAll('a').forEach(function (link) {
+    mobile.querySelectorAll('a, button').forEach(function (link) {
       link.addEventListener('click', function () {
         toggle.classList.remove('active');
         mobile.classList.remove('active');
@@ -252,4 +252,85 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+})();
+
+/* ============================================================
+   COUNTER ANIMATION — animates any [data-count] stat into view
+   ============================================================ */
+(function initCounters() {
+  var counters = document.querySelectorAll('[data-count]');
+  if (!counters.length) return;
+
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var target = parseInt(el.dataset.count, 10);
+          var duration = 2000;
+          var startTime = performance.now();
+
+          function animate(now) {
+            var elapsed = now - startTime;
+            var progress = Math.min(elapsed / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(target * eased) + '+';
+            if (progress < 1) requestAnimationFrame(animate);
+          }
+
+          requestAnimationFrame(animate);
+          observer.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  counters.forEach(function (el) { observer.observe(el); });
+})();
+
+/* ============================================================
+   INTERACTIVE MORTGAGE & WEALTH CALCULATOR
+   ============================================================ */
+(function initWealthCalculator() {
+  var priceInput = document.getElementById('calc-price');
+  var downInput = document.getElementById('calc-down');
+  var rateInput = document.getElementById('calc-rate');
+  var termInput = document.getElementById('calc-term');
+  if (!priceInput || !downInput || !rateInput || !termInput) return;
+
+  function formatMoney(num) {
+    return '$' + Math.round(num).toLocaleString();
+  }
+
+  function update() {
+    var price = parseFloat(priceInput.value);
+    var downPct = parseFloat(downInput.value) / 100;
+    var rate = parseFloat(rateInput.value) / 100;
+    var term = parseInt(termInput.value, 10);
+
+    document.getElementById('calc-price-val').textContent = formatMoney(price);
+    document.getElementById('calc-down-val').textContent = Math.round(downPct * 100) + '%';
+    document.getElementById('calc-rate-val').textContent = (rate * 100).toFixed(2) + '%';
+    document.getElementById('calc-term-val').textContent = term + ' Years';
+
+    var downAmt = price * downPct;
+    var loanAmt = price - downAmt;
+    var monthlyRate = rate / 12;
+    var n = term * 12;
+
+    var monthly = (loanAmt * monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+    if (isNaN(monthly)) monthly = 0;
+
+    var equity10 = price * Math.pow(1.048, 10);
+
+    document.getElementById('calc-monthly').textContent = formatMoney(monthly) + ' /mo';
+    document.getElementById('calc-down-amt').textContent = formatMoney(downAmt);
+    document.getElementById('calc-equity').textContent = formatMoney(equity10);
+  }
+
+  [priceInput, downInput, rateInput, termInput].forEach(function (el) {
+    el.addEventListener('input', update);
+  });
+  update();
 })();

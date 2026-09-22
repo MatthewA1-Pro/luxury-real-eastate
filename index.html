@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aurelia Estates — Luxury Real Estate & 3D Property Experience</title>
-  <meta name="description" content="Step into exceptional living. Aurelia Estates curates the world's finest luxury properties with interactive 3D virtual residence showcases for discerning homeowners." />
+  <title>Aurelia Estates — Future Living, Designed for Visionaries</title>
+  <meta name="description" content="Aurelia Estates curates the world's finest luxury properties — premium urban residences designed for visionaries who demand architectural excellence and timeless style." />
 
   <!-- Styles -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -24,12 +24,12 @@
       <div class="nav__links">
         <a href="index.html" class="nav__link nav__link--active">Home</a>
         <a href="listings.html" class="nav__link">Properties</a>
-        <a href="#destinations" class="nav__link">Destinations</a>
-        <a href="#amenities" class="nav__link">Amenities</a>
-        <a href="#calculator" class="nav__link">Calculator</a>
-        <a href="#about" class="nav__link">About</a>
-        <a href="#contact" class="nav__link">Contact</a>
-        <a href="listings.html" class="nav__cta">View Listings</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="services.html" class="nav__link">Services</a>
+        <button type="button" class="nav__cta" onclick="document.getElementById('tour-modal').classList.add('active')">
+          Contact Us
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
       </div>
       <div class="nav__toggle" id="nav-toggle">
         <span></span><span></span><span></span>
@@ -41,189 +41,63 @@
   <div class="nav__mobile" id="nav-mobile">
     <a href="index.html">Home</a>
     <a href="listings.html">Properties</a>
-    <a href="#destinations">Destinations</a>
-    <a href="#amenities">Amenities</a>
-    <a href="#calculator">Calculator</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <button type="button" onclick="document.getElementById('tour-modal').classList.add('active')">Contact Us</button>
   </div>
 
   <!-- ============================================================
-       HERO SECTION WITH 3D DEPTH PARALLAX
+       HERO SECTION
        ============================================================ -->
   <section class="hero" id="hero">
-    <!-- Background -->
-    <div class="hero__bg">
-      <img src="images/hero-bg.png" alt="Luxury estate aerial view" />
-    </div>
-
-    <!-- Particle Canvas -->
-    <canvas class="hero__particles" id="hero-particles" aria-hidden="true"></canvas>
-
-    <!-- Depth layers with 3D perspective container -->
-    <div class="hero__overlay-images" id="hero-overlays" aria-hidden="true" data-3d-scene>
-      <div class="hero__overlay-img hero__overlay-img--top" id="overlay-top" data-depth="0.15">
-        <img src="images/layer-far.webp" alt="" />
-      </div>
-      <div class="hero__overlay-img hero__overlay-img--left" id="overlay-left" data-depth="0.35">
-        <img src="images/layer-left.webp" alt="" />
-      </div>
-      <div class="hero__overlay-img hero__overlay-img--right" id="overlay-right" data-depth="0.45">
-        <img src="images/layer-right.webp" alt="" />
-      </div>
-      <div class="hero__overlay-img hero__overlay-img--bottom" id="overlay-bottom" data-depth="0.7">
-        <img src="images/layer-near.webp" alt="" />
-      </div>
-    </div>
-
-    <!-- Top Layer Content -->
-    <div class="hero__top-layer" id="hero-top-layer">
-      <div class="hero__content-wrapper">
-        <div class="hero__text">
-          <h1 class="hero__heading" id="hero-heading">
-            STEP INTO
-            <span class="highlight">EXCEPTIONAL LIVING</span>
-          </h1>
-          <p class="hero__description" id="hero-description">
-            Discover an exclusive collection of the world's most extraordinary properties, each curated for those who demand nothing less than perfection.
-          </p>
+    <div class="container">
+      <div class="hero__grid">
+        <div class="hero__content">
+          <span class="hero__eyebrow label">Premium Urban Living</span>
+          <h1 class="hero__title">Future <em>Living</em> Designed for Visionaries</h1>
+          <p class="hero__lead">Discover an exclusive collection of the world's most extraordinary residences — where architectural excellence meets timeless design, curated for those who demand nothing less.</p>
+          <div class="hero__actions">
+            <a href="listings.html" class="btn btn--primary">
+              Explore Properties
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <button type="button" class="btn btn--outline" onclick="document.getElementById('tour-modal').classList.add('active')">Book Consultation</button>
+          </div>
+          <div class="hero__proof">
+            <div class="hero__proof-avatars">
+              <img src="images/property-1.png" alt="" />
+              <img src="images/property-2.png" alt="" />
+              <img src="images/property-4.png" alt="" />
+            </div>
+            <p class="hero__proof-text"><strong>500+</strong> discerning homeowners<br>trusted Aurelia since 2001</p>
+          </div>
         </div>
 
-        <div class="hero__slider-area">
-          <div class="swiper hero__slider" id="hero-slider">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide hero__slide">
-                <img src="images/property-1.png" alt="The Meridian Villa" />
-                <a href="listing.html?id=1" class="hero__slide-btn">
-                  <span class="play-icon"><svg viewBox="0 0 448 512"><path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"/></svg></span>
-                  View Property
-                </a>
-              </div>
-              <div class="swiper-slide hero__slide">
-                <img src="images/property-2.png" alt="Villa Serenata" />
-                <a href="listing.html?id=2" class="hero__slide-btn">
-                  <span class="play-icon"><svg viewBox="0 0 448 512"><path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"/></svg></span>
-                  View Property
-                </a>
-              </div>
-              <div class="swiper-slide hero__slide">
-                <img src="images/property-3.png" alt="The Azure Estate" />
-                <a href="listing.html?id=3" class="hero__slide-btn">
-                  <span class="play-icon"><svg viewBox="0 0 448 512"><path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"/></svg></span>
-                  View Property
-                </a>
-              </div>
-              <div class="swiper-slide hero__slide">
-                <img src="images/property-4.png" alt="Palazzo Lumière" />
-                <a href="listing.html?id=4" class="hero__slide-btn">
-                  <span class="play-icon"><svg viewBox="0 0 448 512"><path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"/></svg></span>
-                  View Property
-                </a>
+        <div class="hero__visual">
+          <div class="hero__image-glow" aria-hidden="true"></div>
+          <div class="hero__image-frame" id="hero-image-frame">
+            <img src="images/property-3.png" alt="Modern glass-walled residence overlooking the coast at dusk" />
+          </div>
+
+          <div class="hero__floating-card reveal-scale">
+            <h4>Luxury Living</h4>
+            <p>Where architectural excellence blends with smart design. Homes for lovers of luxury, innovation, and timeless style.</p>
+            <div class="hero__floating-stat">
+              <span class="hero__floating-number">24</span>
+              <div class="hero__floating-meta">
+                <span class="hero__floating-label">Premium Residences</span>
+                <span class="hero__floating-sub"><span class="hero__availability-dot"></span>Availability: Open</span>
               </div>
             </div>
           </div>
-          <div class="hero__pagination" id="hero-pagination"></div>
-        </div>
-      </div>
 
-      <!-- Circle Enter Button -->
-      <div class="hero__circle-btn" id="hero-circle-btn">
-        <div class="hero__circle-text">
-          <svg viewBox="0 0 120 120">
-            <defs>
-              <path id="circlePath" d="M 60, 60 m -45, 0 a 45,45 0 1,1 90,0 a 45,45 0 1,1 -90,0" />
-            </defs>
-            <text>
-              <textPath href="#circlePath">ENTER EXPERIENCE • ENTER EXPERIENCE •</textPath>
-            </text>
-          </svg>
-        </div>
-        <div class="hero__circle-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
-        </div>
-      </div>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="hero__scroll-indicator" id="hero-scroll-indicator">
-      <span class="hero__scroll-text">Scroll to Explore</span>
-      <div class="hero__scroll-line">
-        <div class="hero__scroll-line-inner"></div>
-      </div>
-    </div>
-
-    <!-- Second Layer (Revealed on Enter Click) -->
-    <div class="hero__second-layer" id="hero-second-layer">
-      <div class="hero__second-content" id="hero-second-content">
-        <h2>STEP INTO<br><span class="text-accent">EXCEPTIONAL LIVING</span></h2>
-        <p>Discover curated luxury properties spanning the world's most desirable destinations.</p>
-      </div>
-
-      <div class="hero__arc-slider-wrapper" id="hero-arc-wrapper">
-        <div class="swiper hero__arc-slider" id="hero-arc-slider">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide hero__arc-slide">
-              <div class="hero__arc-slide-icon">
-                <svg viewBox="0 0 512 512"><path d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z"/></svg>
-              </div>
-              <h3>Waterfront Estates</h3>
-              <p>Ocean & lakefront properties with private docks</p>
-            </div>
-            <div class="swiper-slide hero__arc-slide">
-              <div class="hero__arc-slide-icon">
-                <svg viewBox="0 0 512 512"><path d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z"/></svg>
-              </div>
-              <h3>Mountain Retreats</h3>
-              <p>Alpine chalets and hilltop sanctuaries</p>
-            </div>
-            <div class="swiper-slide hero__arc-slide">
-              <div class="hero__arc-slide-icon">
-                <svg viewBox="0 0 512 512"><path d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z"/></svg>
-              </div>
-              <h3>Urban Penthouses</h3>
-              <p>Skyline living in the world's finest cities</p>
-            </div>
-            <div class="swiper-slide hero__arc-slide">
-              <div class="hero__arc-slide-icon">
-                <svg viewBox="0 0 512 512"><path d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z"/></svg>
-              </div>
-              <h3>Vineyard Estates</h3>
-              <p>Wine country living with private vineyards</p>
-            </div>
-            <div class="swiper-slide hero__arc-slide">
-              <div class="hero__arc-slide-icon">
-                <svg viewBox="0 0 512 512"><path d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z"/></svg>
-              </div>
-              <h3>Island Villas</h3>
-              <p>Private island retreats and tropical paradises</p>
-            </div>
-            <div class="swiper-slide hero__arc-slide">
-              <div class="hero__arc-slide-icon">
-                <svg viewBox="0 0 512 512"><path d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z"/></svg>
-              </div>
-              <h3>Historic Manors</h3>
-              <p>Restored heritage homes with modern luxury</p>
-            </div>
-            <div class="swiper-slide hero__arc-slide">
-              <div class="hero__arc-slide-icon">
-                <svg viewBox="0 0 512 512"><path d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z"/></svg>
-              </div>
-              <h3>Golf Residences</h3>
-              <p>Championship course estates and country clubs</p>
-            </div>
-            <div class="swiper-slide hero__arc-slide">
-              <div class="hero__arc-slide-icon">
-                <svg viewBox="0 0 512 512"><path d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z"/></svg>
-              </div>
-              <h3>Eco Luxury</h3>
-              <p>Sustainable estates with cutting-edge green tech</p>
-            </div>
+          <div class="hero__dot-nav" id="hero-dot-nav">
+            <span class="hero__dot-indicator" id="hero-dot-indicator"></span>
+            <span class="hero__dot hero__dot--active" data-index="0">1</span>
+            <span class="hero__dot" data-index="1">2</span>
+            <span class="hero__dot" data-index="2">3</span>
           </div>
         </div>
-      </div>
-
-      <div class="hero__second-bottom-img" id="hero-second-bottom">
-        <img src="images/layer-near.webp" alt="" />
       </div>
     </div>
   </section>
@@ -536,163 +410,6 @@
   </section>
 
   <!-- ============================================================
-       NEW SECTION 3: BESPOKE LUXURY AMENITIES
-       ============================================================ -->
-  <section class="section section--dark" id="amenities">
-    <div class="container">
-      <div class="section__header reveal" style="text-align: center; justify-content: center;">
-        <div>
-          <span class="label">Craftsmanship & Standards</span>
-          <h2>Uncompromising <span class="text-accent">Luxury Amenities</span></h2>
-          <p style="max-width: 600px; margin: 1rem auto 0; color: var(--color-secondary);">
-            Every property in our portfolio is audited against 120 key luxury benchmarks to ensure unmatched lifestyle quality.
-          </p>
-        </div>
-      </div>
-
-      <div class="amenities-grid">
-        <div class="amenity-card reveal-scale" data-delay="0">
-          <div class="amenity-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-          </div>
-          <h3>Helipad Aviation Access</h3>
-          <p>Direct private rooftop or grounds helipad approval with private charter flight coordination.</p>
-        </div>
-
-        <div class="amenity-card reveal-scale" data-delay="100">
-          <div class="amenity-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12h20M2 17h20M2 7h20"/></svg>
-          </div>
-          <h3>Infinity Ocean Pools</h3>
-          <p>Custom glass-edge cantilevered pools equipped with underwater acoustics and saltwater filtration.</p>
-        </div>
-
-        <div class="amenity-card reveal-scale" data-delay="200">
-          <div class="amenity-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h3>Biometric Security</h3>
-          <p>Military-grade facial recognition, safe rooms, perimeter sensors, and 24/7 armed patrol access.</p>
-        </div>
-
-        <div class="amenity-card reveal-scale" data-delay="300">
-          <div class="amenity-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3v3a2 2 0 01-2 2H3m18 0h-3a2 2 0 01-2-2V3m0 18v-3a2 2 0 012-2h3M3 16h3a2 2 0 012 2v3"/></svg>
-          </div>
-          <h3>Sommelier Wine Vaults</h3>
-          <p>Dual-zone climate repositories holding 800+ rare vintages with tasting lounges and bio-metrics.</p>
-        </div>
-
-        <div class="amenity-card reveal-scale" data-delay="400">
-          <div class="amenity-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          </div>
-          <h3>Superyacht Dockage</h3>
-          <p>Deepwater private docks equipped to berth luxury motor yachts up to 180 feet with fueling facilities.</p>
-        </div>
-
-        <div class="amenity-card reveal-scale" data-delay="500">
-          <div class="amenity-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z"/><path d="M12 8v4l3 3"/></svg>
-          </div>
-          <h3>Private Wellness Spas</h3>
-          <p>Thermal hammams, cold plunge pools, cryotherapy chambers, and private massage therapy wings.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       ABOUT SECTION (PRESERVED CONTENT WITH 3D EFFECT)
-       ============================================================ -->
-  <section class="about section" id="about">
-    <div class="container">
-      <div class="about__grid">
-        <div class="about__image reveal-left">
-          <img src="images/property-3.png" alt="Luxury interior craftsmanship" />
-          <div class="about__accent-box">
-            <span class="number" data-count="25">0</span>
-            <span class="text">Years of Excellence</span>
-          </div>
-        </div>
-        <div class="about__content reveal-right">
-          <span class="label">Our Story</span>
-          <h2>Redefining Luxury <span class="text-accent">Real Estate</span></h2>
-          <p>For over two decades, Aurelia Estates has been the trusted name in luxury real estate. We don't just sell properties — we curate lifestyles, matching exceptional homes with extraordinary people.</p>
-          <p>Our portfolio spans the globe, from sun-drenched Mediterranean villas to sophisticated Manhattan penthouses, each property handpicked for its architectural distinction and investment potential.</p>
-          <div class="about__stats">
-            <div class="about__stat">
-              <span class="number" data-count="500">0</span>
-              <span class="text">Properties Sold</span>
-            </div>
-            <div class="about__stat">
-              <span class="number" data-count="12">0</span>
-              <span class="text">Global Markets</span>
-            </div>
-            <div class="about__stat">
-              <span class="number" data-count="98">0</span>
-              <span class="text">% Client Satisfaction</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       NEW SECTION 4: INTERACTIVE MORTGAGE & WEALTH CALCULATOR
-       ============================================================ -->
-  <section class="section section--dark" id="calculator">
-    <div class="container">
-      <div class="calc-card reveal-scale">
-        <div class="calc-card__left">
-          <span class="label">Financial Planning</span>
-          <h2>Luxury Property <span class="text-accent">Wealth Calculator</span></h2>
-          <p>Forecast your monthly investment, down payment allocation, tax advantages, and projected 10-year asset appreciation.</p>
-
-          <div class="calc-group">
-            <label>Property Purchase Price: <strong id="calc-price-val">$15,000,000</strong></label>
-            <input type="range" id="calc-price" min="2000000" max="50000000" step="500000" value="15000000" />
-          </div>
-
-          <div class="calc-group">
-            <label>Down Payment Percentage: <strong id="calc-down-val">20%</strong></label>
-            <input type="range" id="calc-down" min="10" max="50" step="5" value="20" />
-          </div>
-
-          <div class="calc-group">
-            <label>Interest Rate: <strong id="calc-rate-val">5.5%</strong></label>
-            <input type="range" id="calc-rate" min="3.0" max="8.0" step="0.25" value="5.5" />
-          </div>
-
-          <div class="calc-group">
-            <label>Loan Term: <strong id="calc-term-val">30 Years</strong></label>
-            <input type="range" id="calc-term" min="15" max="30" step="15" value="30" />
-          </div>
-        </div>
-
-        <div class="calc-card__right">
-          <h3>Investment Overview</h3>
-          <div class="calc-result">
-            <span class="calc-result__label">Estimated Monthly Payment</span>
-            <span class="calc-result__value" id="calc-monthly">$68,134 /mo</span>
-          </div>
-          <div class="calc-result">
-            <span class="calc-result__label">Required Down Payment</span>
-            <span class="calc-result__value" id="calc-down-amt">$3,000,000</span>
-          </div>
-          <div class="calc-result">
-            <span class="calc-result__label">Projected 10-Year Equity Growth (+4.8%/yr)</span>
-            <span class="calc-result__value text-accent" id="calc-equity">$23,972,400</span>
-          </div>
-
-          <button class="btn btn--primary" style="width: 100%; margin-top: 1.5rem;" onclick="alert('Wealth Advisory Consultation Request Sent! A senior luxury tax & mortgage advisor will reach out to you.')">Speak with Wealth Advisor</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
        TESTIMONIALS (PRESERVED CONTENT)
        ============================================================ -->
   <section class="testimonials section" id="testimonials">
@@ -841,8 +558,8 @@
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="listings.html">Properties</a></li>
-            <li><a href="#virtual-3d-showcase">3D Showcase</a></li>
-            <li><a href="#about">About Us</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
@@ -898,7 +615,7 @@
   </div>
 
   <!-- ============================================================
-       SCRIPTS (Includes Three.js CDN for WebGL 3D Showcase)
+       SCRIPTS
        ============================================================ -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
