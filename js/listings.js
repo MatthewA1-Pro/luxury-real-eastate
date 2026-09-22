@@ -53,7 +53,7 @@ const ALL_PROPERTIES = [
     sqft: "11,500",
     badge: "For Sale",
     badgeType: "sale",
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80"
+    image: "images/property-3.png"
   },
   {
     id: 4,
@@ -68,7 +68,7 @@ const ALL_PROPERTIES = [
     sqft: "6,400",
     badge: "For Sale",
     badgeType: "sale",
-    image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80"
+    image: "images/property-4.png"
   },
   {
     id: 5,
@@ -83,7 +83,7 @@ const ALL_PROPERTIES = [
     sqft: "4,100",
     badge: "New",
     badgeType: "new",
-    image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80"
+    image: "images/property-5.png"
   },
   {
     id: 6,
@@ -98,7 +98,7 @@ const ALL_PROPERTIES = [
     sqft: "14,200",
     badge: "For Sale",
     badgeType: "sale",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
+    image: "images/hero-bg.png"
   },
   {
     id: 7,
@@ -113,7 +113,7 @@ const ALL_PROPERTIES = [
     sqft: "5,600",
     badge: "Sold",
     badgeType: "sold",
-    image: "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=800&q=80"
+    image: "images/property-1.png"
   },
   {
     id: 8,
@@ -128,7 +128,7 @@ const ALL_PROPERTIES = [
     sqft: "8,900",
     badge: "For Sale",
     badgeType: "sale",
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+    image: "images/property-2.png"
   }
 ];
 

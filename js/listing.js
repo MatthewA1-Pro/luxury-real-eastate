@@ -24,10 +24,10 @@ const PROPERTIES = {
     garage: "4 Cars",
     images: [
       "images/property-1.png",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80"
+      "images/property-2.png",
+      "images/property-3.png",
+      "images/property-4.png",
+      "images/property-5.png"
     ],
     features: [
       "Infinity Edge Pool", "Ocean Views", "Home Theater",
@@ -50,10 +50,10 @@ const PROPERTIES = {
     garage: "3 Cars",
     images: [
       "images/property-2.png",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80",
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80"
+      "images/property-3.png",
+      "images/property-1.png",
+      "images/property-4.png",
+      "images/property-5.png"
     ],
     features: [
       "Private Vineyard", "Olive Groves", "Original Frescoes",
@@ -75,11 +75,11 @@ const PROPERTIES = {
     lotSize: "3.2 Acres",
     garage: "5 Cars",
     images: [
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80"
+      "images/property-3.png",
+      "images/property-4.png",
+      "images/property-1.png",
+      "images/property-5.png",
+      "images/property-2.png"
     ],
     features: [
       "Private Beach", "Heated Lap Pool", "Helipad",

@@ -2059,6 +2059,481 @@ textarea.contact-form__input {
 }
 
 /* ============================================================
+   THREE.JS 3D WEBGL SHOWCASE STYLES
+   ============================================================ */
+.three-showcase-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.three-viewport-card {
+  background: var(--color-dark-surface);
+  border: 1px solid var(--color-dark-border);
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  margin-top: var(--space-2xl);
+  position: relative;
+}
+
+.three-viewport {
+  position: relative;
+  width: 100%;
+  height: 540px;
+  background: radial-gradient(circle at center, #1a1a24 0%, #0a0a0e 100%);
+  cursor: grab;
+}
+
+.three-viewport:active {
+  cursor: grabbing;
+}
+
+.three-viewport canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* 3D Hotspots */
+.hotspot-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  cursor: pointer;
+}
+
+.hotspot-pin__dot {
+  width: 16px;
+  height: 16px;
+  background: var(--color-accent);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--color-accent);
+  animation: hotspotPulse 2s infinite ease-in-out;
+}
+
+@keyframes hotspotPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(223, 197, 98, 0.7); }
+  70% { transform: scale(1.3); box-shadow: 0 0 0 14px rgba(223, 197, 98, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(223, 197, 98, 0); }
+}
+
+.hotspot-pin__tooltip {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+  padding: 10px 14px;
+  border-radius: var(--border-radius);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.hotspot-pin__tooltip strong {
+  display: block;
+  color: #fff;
+  font-size: var(--text-sm);
+  font-family: var(--font-heading);
+}
+
+.hotspot-pin__tooltip span {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-secondary);
+}
+
+.hotspot-pin:hover .hotspot-pin__tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Three HUD Controls */
+.three-hud {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.three-hud__hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: var(--text-xs);
+  color: var(--color-secondary);
+}
+
+.three-hud__buttons {
+  display: flex;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.three-btn {
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.three-btn:hover, .three-btn.active {
+  background: var(--color-accent);
+  color: var(--color-dark);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 15px rgba(223, 197, 98, 0.3);
+}
+
+/* Three Specs Bar */
+.three-specs-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: var(--color-dark-soft);
+  border-top: 1px solid var(--color-dark-border);
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.three-spec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.three-spec__val {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.three-spec__lbl {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   DESTINATIONS GRID STYLES
+   ============================================================ */
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+.destination-card {
+  position: relative;
+  height: 380px;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s ease;
+}
+
+.destination-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+.destination-card__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.destination-card__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.destination-card:hover .destination-card__bg img {
+  transform: scale(1.1);
+}
+
+.destination-card__content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.2) 60%, transparent 100%);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.destination-card__badge {
+  align-self: flex-start;
+  background: rgba(223, 197, 98, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.destination-card h3 {
+  font-size: var(--text-2xl);
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.destination-card p {
+  font-size: var(--text-sm);
+  color: var(--color-secondary);
+  margin-bottom: 1rem;
+}
+
+.destination-card__link {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* ============================================================
+   AMENITIES GRID STYLES
+   ============================================================ */
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+.amenity-card {
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-dark-border);
+  border-radius: var(--border-radius-lg);
+  padding: 2.5rem 2rem;
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.amenity-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-accent);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(223, 197, 98, 0.1);
+}
+
+.amenity-card__icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: rgba(223, 197, 98, 0.1);
+  border: 1px solid rgba(223, 197, 98, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--color-accent);
+}
+
+.amenity-card__icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.amenity-card h3 {
+  font-size: var(--text-xl);
+  margin-bottom: 0.75rem;
+}
+
+.amenity-card p {
+  font-size: var(--text-sm);
+  color: var(--color-body);
+}
+
+/* ============================================================
+   WEALTH & MORTGAGE CALCULATOR STYLES
+   ============================================================ */
+.calc-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-3xl);
+  background: var(--color-dark-surface);
+  border: 1px solid var(--color-dark-border);
+  border-radius: var(--border-radius-xl);
+  padding: 3rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.calc-group {
+  margin-top: 1.5rem;
+}
+
+.calc-group label {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.calc-group input[type="range"] {
+  width: 100%;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.calc-card__right {
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid var(--color-dark-border);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.calc-result {
+  margin-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px dashed var(--color-dark-border);
+}
+
+.calc-result__label {
+  display: block;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+}
+
+.calc-result__value {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: #fff;
+  margin-top: 4px;
+}
+
+/* ============================================================
+   PRESS GRID STYLES
+   ============================================================ */
+.press-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-xl);
+}
+
+.press-card {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1.5rem;
+}
+
+.press-card__publication {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.press-card p {
+  font-size: var(--text-xs);
+  color: var(--color-secondary);
+  font-style: italic;
+}
+
+/* ============================================================
+   VIP MODAL STYLES
+   ============================================================ */
+.tour-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.tour-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tour-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+.tour-modal__box {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 500px;
+  background: var(--color-dark-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--border-radius-xl);
+  padding: 2.5rem;
+  box-shadow: 0 0 50px rgba(223, 197, 98, 0.2);
+  transform: scale(0.9);
+  transition: transform 0.4s ease;
+}
+
+.tour-modal.active .tour-modal__box {
+  transform: scale(1);
+}
+
+.tour-modal__close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 2rem;
+  color: var(--color-muted);
+  line-height: 1;
+  transition: color 0.3s;
+}
+
+.tour-modal__close:hover {
+  color: var(--color-accent);
+}
+
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 

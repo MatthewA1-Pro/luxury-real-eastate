@@ -44,7 +44,43 @@ var FEATURED_PROPERTIES = [
     sqft: "11,500",
     badge: "For Sale",
     badgeType: "sale",
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80"
+    image: "images/property-3.png"
+  },
+  {
+    id: 4,
+    name: "Palazzo Lumière",
+    location: "Lake Como, Italy",
+    price: "$22,000,000",
+    beds: 8,
+    baths: 10,
+    sqft: "14,000",
+    badge: "Trophy Asset",
+    badgeType: "sale",
+    image: "images/property-4.png"
+  },
+  {
+    id: 5,
+    name: "Bel-Air Grand Manor",
+    location: "Los Angeles, CA",
+    price: "$28,500,000",
+    beds: 9,
+    baths: 12,
+    sqft: "16,800",
+    badge: "Exclusive",
+    badgeType: "new",
+    image: "images/property-5.png"
+  },
+  {
+    id: 6,
+    name: "Skyline Penthouse",
+    location: "Manhattan, NY",
+    price: "$18,900,000",
+    beds: 5,
+    baths: 6,
+    sqft: "8,500",
+    badge: "For Sale",
+    badgeType: "sale",
+    image: "images/hero-bg.png"
   }
 ];
 
@@ -806,3 +842,215 @@ gsap.registerEase("contentReveal",
 
   counters.forEach(function (el) { observer.observe(el); });
 })();
+
+/* ============================================================
+   THREE.JS 3D VIRTUAL SHOWCASE RENDERER
+   ============================================================ */
+(function initThreeShowcase() {
+  var container = document.getElementById('three-container');
+  var canvas = document.getElementById('three-canvas');
+  if (!container || !canvas || typeof THREE === 'undefined') return;
+
+  var scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x0a0a0e, 0.035);
+
+  var camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+  camera.position.set(18, 12, 22);
+
+  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // Lighting
+  var ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+  scene.add(ambientLight);
+
+  var dirLight = new THREE.DirectionalLight(0xdfc562, 1.8);
+  dirLight.position.set(20, 30, 15);
+  scene.add(dirLight);
+
+  var pointLight = new THREE.PointLight(0x60a5fa, 2, 30);
+  pointLight.position.set(0, 4, 0);
+  scene.add(pointLight);
+
+  // Group for Villa Model
+  var villaGroup = new THREE.Group();
+  scene.add(villaGroup);
+
+  // Base Obsidian Platform
+  var baseGeo = new THREE.BoxGeometry(24, 1, 18);
+  var baseMat = new THREE.MeshStandardMaterial({ color: 0x15151e, roughness: 0.2, metalness: 0.8 });
+  var baseMesh = new THREE.Mesh(baseGeo, baseMat);
+  baseMesh.position.y = -0.5;
+  villaGroup.add(baseMesh);
+
+  // Main Glass Floor Structure
+  var glassGeo = new THREE.BoxGeometry(16, 5, 10);
+  var glassMat = new THREE.MeshPhysicalMaterial({
+    color: 0x223344, transparent: true, opacity: 0.65, roughness: 0.1, transmission: 0.9, reflectivity: 0.9
+  });
+  var glassMesh = new THREE.Mesh(glassGeo, glassMat);
+  glassMesh.position.set(0, 2.5, 0);
+  villaGroup.add(glassMesh);
+
+  // Upper Cantilever Penthouse
+  var upperGeo = new THREE.BoxGeometry(12, 4, 8);
+  var upperMat = new THREE.MeshStandardMaterial({ color: 0x2a2a35, roughness: 0.3, metalness: 0.7 });
+  var upperMesh = new THREE.Mesh(upperGeo, upperMat);
+  upperMesh.position.set(-2, 7, -1);
+  villaGroup.add(upperMesh);
+
+  // Cantilever Infinity Pool
+  var poolGeo = new THREE.BoxGeometry(8, 0.8, 5);
+  var poolMat = new THREE.MeshStandardMaterial({ color: 0x00d2ff, roughness: 0.1, metalness: 0.2, emissive: 0x005588, emissiveIntensity: 0.4 });
+  var poolMesh = new THREE.Mesh(poolGeo, poolMat);
+  poolMesh.position.set(6, 4.8, 3);
+  villaGroup.add(poolMesh);
+
+  // Golden Frame Accents
+  var goldMat = new THREE.MeshStandardMaterial({ color: 0xdfc562, metalness: 0.9, roughness: 0.1 });
+  for (var i = -8; i <= 8; i += 4) {
+    var pillarGeo = new THREE.BoxGeometry(0.3, 9, 0.3);
+    var pillar = new THREE.Mesh(pillarGeo, goldMat);
+    pillar.position.set(i, 4.5, 5);
+    villaGroup.add(pillar);
+  }
+
+  // Floating Dust Motes Particles
+  var particleGeo = new THREE.BufferGeometry();
+  var pCount = 150;
+  var posArray = new Float32Array(pCount * 3);
+  for (var p = 0; p < pCount * 3; p += 3) {
+    posArray[p] = (Math.random() - 0.5) * 40;
+    posArray[p+1] = Math.random() * 20;
+    posArray[p+2] = (Math.random() - 0.5) * 40;
+  }
+  particleGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+  var particleMat = new THREE.PointsMaterial({ size: 0.15, color: 0xdfc562, transparent: true, opacity: 0.7 });
+  var particles = new THREE.Points(particleGeo, particleMat);
+  scene.add(particles);
+
+  // Drag interaction
+  var isDragging = false;
+  var previousMousePosition = { x: 0, y: 0 };
+  var targetRotationY = 0;
+  var targetRotationX = 0;
+
+  container.addEventListener('mousedown', function(e) { isDragging = true; });
+  window.addEventListener('mouseup', function() { isDragging = false; });
+  container.addEventListener('mousemove', function(e) {
+    var deltaMove = { x: e.clientX - previousMousePosition.x, y: e.clientY - previousMousePosition.y };
+    if (isDragging) {
+      targetRotationY += deltaMove.x * 0.008;
+      targetRotationX += deltaMove.y * 0.008;
+      targetRotationX = Math.max(-0.5, Math.min(0.8, targetRotationX));
+    }
+    previousMousePosition = { x: e.clientX, y: e.clientY };
+  });
+
+  // Touch support for mobile
+  container.addEventListener('touchstart', function(e) {
+    if (e.touches.length === 1) {
+      isDragging = true;
+      previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+  });
+  window.addEventListener('touchend', function() { isDragging = false; });
+  container.addEventListener('touchmove', function(e) {
+    if (isDragging && e.touches.length === 1) {
+      var deltaMove = { x: e.touches[0].clientX - previousMousePosition.x, y: e.touches[0].clientY - previousMousePosition.y };
+      targetRotationY += deltaMove.x * 0.008;
+      targetRotationX += deltaMove.y * 0.008;
+      previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+  });
+
+  // Camera presets
+  var buttons = document.querySelectorAll('.three-btn');
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      buttons.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var mode = btn.dataset.cam;
+      if (typeof gsap !== 'undefined') {
+        if (mode === 'default') {
+          gsap.to(camera.position, { x: 18, y: 12, z: 22, duration: 1.5, ease: 'power2.inOut' });
+        } else if (mode === 'pool') {
+          gsap.to(camera.position, { x: 10, y: 7, z: 8, duration: 1.5, ease: 'power2.inOut' });
+        } else if (mode === 'lounge') {
+          gsap.to(camera.position, { x: 0, y: 4, z: 12, duration: 1.5, ease: 'power2.inOut' });
+        } else if (mode === 'suite') {
+          gsap.to(camera.position, { x: -4, y: 10, z: 6, duration: 1.5, ease: 'power2.inOut' });
+        }
+      }
+    });
+  });
+
+  // Animation Loop
+  function animate() {
+    requestAnimationFrame(animate);
+    if (!isDragging) {
+      targetRotationY += 0.002;
+    }
+    villaGroup.rotation.y += (targetRotationY - villaGroup.rotation.y) * 0.08;
+    villaGroup.rotation.x += (targetRotationX - villaGroup.rotation.x) * 0.08;
+    particles.rotation.y += 0.0008;
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  window.addEventListener('resize', function() {
+    if (!container) return;
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+  });
+})();
+
+/* ============================================================
+   INTERACTIVE MORTGAGE & WEALTH CALCULATOR
+   ============================================================ */
+(function initWealthCalculator() {
+  var priceInput = document.getElementById('calc-price');
+  var downInput = document.getElementById('calc-down');
+  var rateInput = document.getElementById('calc-rate');
+  var termInput = document.getElementById('calc-term');
+  if (!priceInput || !downInput || !rateInput || !termInput) return;
+
+  function formatMoney(num) {
+    return '$' + Math.round(num).toLocaleString();
+  }
+
+  function update() {
+    var price = parseFloat(priceInput.value);
+    var downPct = parseFloat(downInput.value) / 100;
+    var rate = parseFloat(rateInput.value) / 100;
+    var term = parseInt(termInput.value, 10);
+
+    document.getElementById('calc-price-val').textContent = formatMoney(price);
+    document.getElementById('calc-down-val').textContent = Math.round(downPct * 100) + '%';
+    document.getElementById('calc-rate-val').textContent = (rate * 100).toFixed(2) + '%';
+    document.getElementById('calc-term-val').textContent = term + ' Years';
+
+    var downAmt = price * downPct;
+    var loanAmt = price - downAmt;
+    var monthlyRate = rate / 12;
+    var n = term * 12;
+
+    var monthly = (loanAmt * monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+    if (isNaN(monthly)) monthly = 0;
+
+    var equity10 = price * Math.pow(1.048, 10);
+
+    document.getElementById('calc-monthly').textContent = formatMoney(monthly) + ' /mo';
+    document.getElementById('calc-down-amt').textContent = formatMoney(downAmt);
+    document.getElementById('calc-equity').textContent = formatMoney(equity10);
+  }
+
+  [priceInput, downInput, rateInput, termInput].forEach(function(el) {
+    el.addEventListener('input', update);
+  });
+  update();
+})();
+
